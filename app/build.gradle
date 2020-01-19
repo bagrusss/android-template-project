@@ -1,17 +1,18 @@
 apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+//apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.2"
+
+    compileSdkVersion androidCompileSdkVersion
+    buildToolsVersion androidBuildToolsVersion
 
     defaultConfig {
         applicationId "ru.bagrusss.templateapp"
-        minSdkVersion 21
-        targetSdkVersion 29
+        minSdkVersion androidMinSdkVersion
+        targetSdkVersion androidTargetSdkVersion
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -22,21 +23,45 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    androidExtensions {
+    /*androidExtensions {
         experimental = true
         features = ["parcelize"]
-    }
+    }*/
 
     dataBinding {
         enabled = true
     }
 
-    buildTypes {
+    signingConfigs {
         release {
+            keyAlias "keyAlias"
+            keyPassword "keyPassword"
+            storeFile file("storeFile")
+            storePassword "storePassword"
+        }
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+            applicationIdSuffix ".debug"
+
             minifyEnabled false
+            shrinkResources false
+        }
+
+        release {
+            debuggable false
+
+            minifyEnabled true
+            shrinkResources true
+
+            signingConfigs.release
+
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
 }
 
 dependencies {
@@ -70,9 +95,21 @@ dependencies {
     ////////////////
     implementation "com.squareup.retrofit2:retrofit:$retrofit"
     implementation "com.squareup.retrofit2:converter-moshi:$retrofit"
+
     implementation "com.squareup.okhttp3:okhttp:$okhttp"
+
     implementation "com.squareup.moshi:moshi:$moshi"
-    implementation "com.squareup.moshi:moshi-kotlin:$moshi"
+    debugImplementation "com.squareup.moshi:moshi-kotlin:$moshi"
+    kaptRelease "com.squareup.moshi:moshi-kotlin-codegen:$moshi"
+
+
+    /////////////////
+    //
+    // DEV
+    //
+    ////////////////
+    debugImplementation "com.facebook.stetho:stetho-okhttp3:$stetho"
+    implementation "com.jakewharton.timber:timber:$timber"
 
 
     /////////////////

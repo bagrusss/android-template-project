@@ -8,7 +8,9 @@ import androidx.lifecycle.ViewModel
 /**
  * Created by bagrusss on 12.08.2019
  */
-abstract class BaseViewModel<I : Interactor>(@JvmField protected val interactor: I) : ViewModel(), LifecycleObserver {
+abstract class BaseViewModel<I : Interactor>(
+    @JvmField protected val interactor: I
+) : ViewModel(), LifecycleObserver {
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     open fun created() {}

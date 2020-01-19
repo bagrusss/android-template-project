@@ -8,6 +8,10 @@ class MainActivity : MvvmActivity<ActivityMainBinding, EmptyViewModel>() {
 
     override val layout = R.layout.activity_main
 
-    override fun createViewModel() = lazy { EmptyViewModel() }
+    override fun createViewModel() = lazy(::EmptyViewModel)
+
+    override fun inject() {
+
+    }
 
 }

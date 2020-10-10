@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
-//apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
@@ -23,10 +23,10 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    /*androidExtensions {
+    androidExtensions {
         experimental = true
         features = ["parcelize"]
-    }*/
+    }
 
     dataBinding {
         enabled = true
@@ -101,6 +101,14 @@ dependencies {
     implementation "com.squareup.moshi:moshi:$moshi"
     debugImplementation "com.squareup.moshi:moshi-kotlin:$moshi"
     kaptRelease "com.squareup.moshi:moshi-kotlin-codegen:$moshi"
+
+    ////////////////
+    //
+    // RX
+    //
+    ///////////////
+    implementation "io.reactivex.rxjava3:rxjava:$rx_java"
+    implementation "io.reactivex.rxjava3:rxandroid:$rx_android"
 
     ////////////////
     //

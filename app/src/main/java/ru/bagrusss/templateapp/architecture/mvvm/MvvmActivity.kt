@@ -1,11 +1,11 @@
-package ru.bagrusss.templateapp.mvvm
+package ru.bagrusss.templateapp.architecture.mvvm
 
 import android.os.Bundle
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import ru.bagrusss.templateapp.di.Injectable
+import ru.bagrusss.templateapp.architecture.di.Injectable
 
 /**
  * Created by bagrusss on 12.08.2019

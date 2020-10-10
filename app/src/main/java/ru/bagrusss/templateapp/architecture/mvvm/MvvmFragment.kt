@@ -1,4 +1,4 @@
-package ru.bagrusss.templateapp.mvvm
+package ru.bagrusss.templateapp.architecture.mvvm
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import ru.bagrusss.templateapp.di.Injectable
+import ru.bagrusss.templateapp.architecture.di.Injectable
 
 /**
  * Created by bagrusss on 12.08.2019

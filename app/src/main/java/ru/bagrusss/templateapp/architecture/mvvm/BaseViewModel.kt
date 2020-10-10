@@ -1,4 +1,4 @@
-package ru.bagrusss.templateapp.mvvm
+package ru.bagrusss.templateapp.architecture.mvvm
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver

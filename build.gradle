@@ -20,7 +20,9 @@ buildscript {
 
             retrofit                : "2.9.0",
             okhttp                  : "4.8.0",
-            moshi                   : "1.11.0", 
+            moshi                   : "1.11.0",
+
+            dagger_version           : "2.29.1",
 
             rx_java                 : "3.0.7",
             rx_android              : "3.0.0",

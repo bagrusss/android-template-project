@@ -26,6 +26,7 @@ buildscript {
 
             rx_java                 : "3.0.7",
             rx_android              : "3.0.0",
+            rx_bindings             : "4.0.0",
 
             stetho                  : "1.5.1",
             timber                  : "4.7.1",

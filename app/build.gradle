@@ -110,6 +110,8 @@ dependencies {
     implementation "io.reactivex.rxjava3:rxjava:$rx_java"
     implementation "io.reactivex.rxjava3:rxandroid:$rx_android"
 
+    implementation "com.jakewharton.rxbinding4:rxbinding:$rx_bindings"
+
     ////////////////
     //
     // DI

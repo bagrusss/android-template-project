@@ -2,9 +2,9 @@ package ru.bagrusss.templateapp.architecture.mvi.navigation
 
 import io.reactivex.rxjava3.disposables.Disposable
 
-abstract class BaseRouter(
+abstract class BaseNavRouter(
     protected val resultsMediator: ResultsMediator
-) : Router {
+) : NavRouter {
 
     private var resultDisposable = Disposable.empty()
 

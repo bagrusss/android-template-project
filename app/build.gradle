@@ -91,6 +91,9 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
     implementation "androidx.fragment:fragment-ktx:1.3.0-beta01"
 
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
 
     ////////////////
     //
@@ -114,7 +117,6 @@ dependencies {
     implementation "io.reactivex.rxjava3:rxjava:$rx_java"
     implementation "io.reactivex.rxjava3:rxkotlin:$rx_kotlin"
     implementation "io.reactivex.rxjava3:rxandroid:$rx_android"
-
     implementation "com.jakewharton.rxbinding4:rxbinding:$rx_bindings"
 
     ////////////////

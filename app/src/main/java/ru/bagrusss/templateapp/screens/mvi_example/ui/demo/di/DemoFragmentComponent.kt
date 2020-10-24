@@ -1,5 +1,6 @@
 package ru.bagrusss.templateapp.screens.mvi_example.ui.demo.di
 
+import androidx.navigation.NavController
 import dagger.BindsInstance
 import dagger.Subcomponent
 import ru.bagrusss.templateapp.architecture.mvi.di.FragmentComponent
@@ -21,6 +22,9 @@ interface DemoFragmentComponent : FragmentComponent {
 
         @BindsInstance
         fun inputData(inputData: DemoContract.InputData): Builder
+
+        @BindsInstance
+        fun navController(navController: NavController): Builder
 
     }
 

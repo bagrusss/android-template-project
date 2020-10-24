@@ -1,13 +1,15 @@
 package ru.bagrusss.templateapp.screens.mvi_example.ui.demo
 
-import ru.bagrusss.templateapp.architecture.mvi.navigation.BaseRouter
+import androidx.navigation.NavController
+import ru.bagrusss.templateapp.architecture.mvi.navigation.BaseNavRouter
 import ru.bagrusss.templateapp.architecture.mvi.navigation.ResultsMediator
 import ru.bagrusss.templateapp.screens.mvi_example.domain.AgeResult
 import javax.inject.Inject
 
-internal class DemoRouterImpl @Inject constructor(
-    resultsMediator: ResultsMediator
-): BaseRouter(resultsMediator), DemoContract.DemoRouter {
+internal class DemoRouter @Inject constructor(
+    resultsMediator: ResultsMediator,
+    private val navController: NavController
+) : BaseNavRouter(resultsMediator), DemoContract.Router {
 
     override fun openResultScreen(onResult: (AgeResult) -> Unit) {
         resultsMediator.results

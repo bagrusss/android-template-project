@@ -16,7 +16,7 @@ internal class DemoViewModel @Inject constructor(
     resultsMediator: ResultsMediator,
     schedulersProvider: SchedulersProvider,
     private val inputData: InputData,
-    private val router: DemoRouter
+    private val router: Router
 ) : BaseViewModel<DomainState, UIState, IOData.EmptyOutput>(stateMapper, resultsMediator, schedulersProvider), ViewModel {
 
     override fun observeDomainState(): Observable<DomainState> = Observable.just(DomainState(inputData.amount))

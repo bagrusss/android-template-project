@@ -21,7 +21,7 @@
         </activity>
 
         <activity
-            android:name=".screens.MviDemo"
+            android:name=".screens.MviDemoActivity"
             android:label="MVI">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -4,7 +4,7 @@ import kotlinx.android.parcel.Parcelize
 import ru.bagrusss.templateapp.architecture.mvi.MviViewModel
 import ru.bagrusss.templateapp.architecture.mvi.common.IOData
 import ru.bagrusss.templateapp.architecture.mvi.common.ScreenStates
-import ru.bagrusss.templateapp.architecture.mvi.navigation.Router
+import ru.bagrusss.templateapp.architecture.mvi.navigation.NavRouter
 import ru.bagrusss.templateapp.screens.mvi_example.domain.AgeResult
 
 interface DemoContract {
@@ -15,18 +15,18 @@ interface DemoContract {
 
     @Parcelize
     data class InputData(
-        val amount: Int
+        @JvmField val amount: Int
     ) : IOData.Input
 
     data class DomainState(
-        val amount: Int
+        @JvmField val amount: Int
     ) : ScreenStates.Domain
 
     data class UIState(
-        val amount: String
+        @JvmField val amount: String
     ) : ScreenStates.UI
 
-    interface DemoRouter : Router {
+    interface Router : NavRouter {
         fun openResultScreen(onResult: (AgeResult) -> Unit)
     }
 

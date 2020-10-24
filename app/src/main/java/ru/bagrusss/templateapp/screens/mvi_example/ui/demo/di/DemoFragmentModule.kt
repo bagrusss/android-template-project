@@ -10,9 +10,9 @@ import ru.bagrusss.templateapp.architecture.mvi.di.BaseFragmentModule
 import ru.bagrusss.templateapp.architecture.mvi.di.DiViewModelFactory
 import ru.bagrusss.templateapp.architecture.mvi.di.FragmentQualifier
 import ru.bagrusss.templateapp.architecture.mvi.di.FragmentScope
-import ru.bagrusss.templateapp.architecture.mvi.navigation.Router
+import ru.bagrusss.templateapp.architecture.mvi.navigation.NavRouter
 import ru.bagrusss.templateapp.screens.mvi_example.ui.demo.DemoContract.*
-import ru.bagrusss.templateapp.screens.mvi_example.ui.demo.DemoRouterImpl
+import ru.bagrusss.templateapp.screens.mvi_example.ui.demo.DemoRouter
 import ru.bagrusss.templateapp.screens.mvi_example.ui.demo.DemoStateMapper
 import ru.bagrusss.templateapp.screens.mvi_example.ui.demo.DemoViewModel
 import javax.inject.Inject
@@ -32,11 +32,11 @@ internal abstract class DemoModule : BaseFragmentModule {
 
     @Binds
     @FragmentScope
-    abstract fun bindDemoRouter(router: DemoRouterImpl): DemoRouter
+    abstract fun bindDemoRouter(router: DemoRouter): Router
 
     @Binds
     @FragmentScope
-    abstract fun bindRouter(demoRouter: DemoRouter): Router
+    abstract fun bindRouter(demoRouter: Router): NavRouter
 
     @Module
     companion object {

@@ -11,6 +11,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import ru.bagrusss.templateapp.architecture.mvi.common.IOData
 import ru.bagrusss.templateapp.architecture.mvi.common.ScreenStates
+import ru.bagrusss.templateapp.architecture.mvi.common.unsafeLazy
 import ru.bagrusss.templateapp.architecture.mvi.di.FragmentComponent
 import ru.bagrusss.templateapp.architecture.mvi.ext.toInput
 import timber.log.Timber
@@ -26,7 +27,8 @@ abstract class MviFragment<UI : ScreenStates.UI, INPUT_DATA : IOData.Input, OUTP
     protected val inputData: INPUT_DATA
         get() = arguments.toInput()
 
-    private val destroyFragmentDisposable = CompositeDisposable()
+    private val destroyFragmentDisposable by unsafeLazy(::CompositeDisposable)
+    private val stopFragmentDisposable by unsafeLazy(::CompositeDisposable)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -46,12 +48,21 @@ abstract class MviFragment<UI : ScreenStates.UI, INPUT_DATA : IOData.Input, OUTP
 
     override fun onStart() {
         super.onStart()
+
+        component.router.onStart()
+    }
+
+    override fun onStop() {
+        super.onStop()
+
+        component.router.onStop()
+        stopFragmentDisposable.clear()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
 
-        destroyFragmentDisposable.dispose()
+        destroyFragmentDisposable.clear()
     }
 
     protected open fun buildScreen(state: UI) = Unit
@@ -62,6 +73,14 @@ abstract class MviFragment<UI : ScreenStates.UI, INPUT_DATA : IOData.Input, OUTP
         onNext: (T) -> Unit = {}
     ) {
         destroyFragmentDisposable += subscribe(onNext, onError, onComplete)
+    }
+
+    protected fun <T> Observable<T>.subscribeTillStop(
+        onError: (Throwable) -> Unit = Timber::e,
+        onComplete: () -> Unit = {},
+        onNext: (T) -> Unit = {}
+    ) {
+        stopFragmentDisposable += subscribe(onNext, onError, onComplete)
     }
 
     private fun setResult(result: Parcelable) {

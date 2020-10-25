@@ -5,6 +5,7 @@ import ru.bagrusss.templateapp.architecture.mvi.common.LazySingletonHolder
 import ru.bagrusss.templateapp.architecture.mvi.common.ModuleInitArgs
 import ru.bagrusss.templateapp.architecture.mvi.di.ModuleScope
 import ru.bagrusss.templateapp.architecture.mvi.di.api.core.CoreApi
+import ru.bagrusss.templateapp.screens.mvi_example.api.DemoModuleApi
 import ru.bagrusss.templateapp.screens.mvi_example.ui.demo.di.DemoFragmentInjector
 
 @ModuleScope
@@ -14,7 +15,9 @@ import ru.bagrusss.templateapp.screens.mvi_example.ui.demo.di.DemoFragmentInject
         CoreApi::class
     ]
 )
-interface DemoModuleComponent : DemoFragmentInjector {
+interface DemoModuleComponent : DemoModuleApi,
+
+    DemoFragmentInjector {
 
     @Component.Factory
     interface Factory {

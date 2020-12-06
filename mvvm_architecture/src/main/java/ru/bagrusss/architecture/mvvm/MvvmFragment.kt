@@ -1,27 +1,23 @@
-package ru.bagrusss.templateapp.architecture.mvvm
+package ru.bagrusss.architecture.mvvm
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
-import ru.bagrusss.templateapp.architecture.di.Injectable
+import ru.bagrusss.architecture.di.Injectable
 
 /**
  * Created by bagrusss on 12.08.2019
  */
-abstract class MvvmFragment<B : ViewDataBinding, out VM : BaseViewModel<*>> :
-    Fragment(),
+abstract class MvvmFragment<B : ViewDataBinding, out VM : BaseViewModel<*>>(protected val layout: Int) :
+    Fragment(layout),
     Injectable {
 
     protected lateinit var binding: B
     protected val vm by createViewModel()
 
-    protected abstract val layout: Int
     protected abstract fun createViewModel(): Lazy<VM>
 
     protected open var isFullScreen = false

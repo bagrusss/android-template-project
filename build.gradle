@@ -9,7 +9,7 @@ buildscript {
 
             androidBuildToolsVersion: "30.0.2",
             proguard                : "7.0.0",
-            gradle_plugin           : "4.1.0",
+            gradle_plugin           : "4.1.1",
 
             kotlin_version          : "1.4.10",
 
@@ -20,7 +20,7 @@ buildscript {
             nav_version             : "2.3.1",
 
             retrofit                : "2.9.0",
-            okhttp                  : "4.8.0",
+            okhttp                  : "4.9.0",
             moshi                   : "1.11.0",
 
             dagger_version          : "2.29.1",

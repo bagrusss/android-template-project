@@ -1,9 +1,10 @@
-package ru.bagrusss.templateapp.architecture.mvvm
+package ru.bagrusss.architecture.mvvm
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ViewModel
+import ru.bagrusss.architecture.domain.Interactor
 
 /**
  * Created by bagrusss on 12.08.2019

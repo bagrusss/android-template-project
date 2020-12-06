@@ -71,6 +71,8 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    implementation project(path: ':mvvm_architecture')
+
     /////////////////
     //
     // KOTLIN

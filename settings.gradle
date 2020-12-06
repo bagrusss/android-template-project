@@ -1,1 +1,2 @@
+include ':mvvm_architecture'
 include ':app'

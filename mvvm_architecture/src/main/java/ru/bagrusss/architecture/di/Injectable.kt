@@ -1,4 +1,4 @@
-package ru.bagrusss.templateapp.architecture.di
+package ru.bagrusss.architecture.di
 
 /**
  * Created by bagrusss on 19.01.2020

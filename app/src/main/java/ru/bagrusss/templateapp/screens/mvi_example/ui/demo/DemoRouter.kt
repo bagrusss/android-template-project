@@ -13,11 +13,7 @@ internal class DemoRouter @Inject constructor(
 
     override fun openResultScreen(onResult: (AgeResult) -> Unit) {
         resultsMediator.results
-            .doOnNext {
-                if (it is AgeResult) {
-                    onResult(it)
-                }
-            }
+            .ofType(AgeResult::class.java)
+            .doOnNext(onResult)
     }
-
 }

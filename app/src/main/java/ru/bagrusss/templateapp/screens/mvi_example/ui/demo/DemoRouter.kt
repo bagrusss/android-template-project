@@ -1,8 +1,8 @@
 package ru.bagrusss.templateapp.screens.mvi_example.ui.demo
 
 import androidx.navigation.NavController
-import ru.bagrusss.templateapp.architecture.mvi.navigation.BaseNavRouter
-import ru.bagrusss.templateapp.architecture.mvi.navigation.ResultsMediator
+import ru.bagrusss.architecture.mvi.navigation.BaseNavRouter
+import ru.bagrusss.architecture.mvi.navigation.ResultsMediator
 import ru.bagrusss.templateapp.screens.mvi_example.domain.AgeResult
 import javax.inject.Inject
 

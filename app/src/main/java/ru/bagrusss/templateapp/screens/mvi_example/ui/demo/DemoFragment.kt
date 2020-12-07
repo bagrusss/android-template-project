@@ -2,11 +2,11 @@ package ru.bagrusss.templateapp.screens.mvi_example.ui.demo
 
 import androidx.navigation.fragment.findNavController
 import kotlinx.android.synthetic.main.fragment_demo.*
+import ru.bagrusss.architecture.common.unsafeLazy
+import ru.bagrusss.architecture.ext.throttledClicks
+import ru.bagrusss.architecture.mvi.MviFragment
+import ru.bagrusss.architecture.mvi.common.IOData
 import ru.bagrusss.templateapp.R
-import ru.bagrusss.templateapp.architecture.mvi.MviFragment
-import ru.bagrusss.templateapp.architecture.mvi.common.IOData
-import ru.bagrusss.templateapp.architecture.mvi.common.unsafeLazy
-import ru.bagrusss.templateapp.architecture.mvi.ext.throttledClicks
 import ru.bagrusss.templateapp.screens.mvi_example.di.DemoModuleProvider
 import ru.bagrusss.templateapp.screens.mvi_example.ui.demo.DemoContract.InputData
 import ru.bagrusss.templateapp.screens.mvi_example.ui.demo.DemoContract.UIState

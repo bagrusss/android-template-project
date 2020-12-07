@@ -1,11 +1,11 @@
 package ru.bagrusss.templateapp.screens.mvi_example.ui.demo
 
 import io.reactivex.rxjava3.core.Observable
-import ru.bagrusss.templateapp.architecture.common.SchedulersProvider
-import ru.bagrusss.templateapp.architecture.mvi.BaseViewModel
-import ru.bagrusss.templateapp.architecture.mvi.MviStateMapper
-import ru.bagrusss.templateapp.architecture.mvi.common.IOData
-import ru.bagrusss.templateapp.architecture.mvi.navigation.ResultsMediator
+import ru.bagrusss.architecture.common.SchedulersProvider
+import ru.bagrusss.architecture.mvi.BaseViewModel
+import ru.bagrusss.architecture.mvi.MviStateMapper
+import ru.bagrusss.architecture.mvi.common.IOData
+import ru.bagrusss.architecture.mvi.navigation.ResultsMediator
 import javax.inject.Inject
 
 import ru.bagrusss.templateapp.screens.mvi_example.ui.demo.DemoContract.*

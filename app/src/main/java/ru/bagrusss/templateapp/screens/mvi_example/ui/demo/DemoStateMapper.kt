@@ -1,6 +1,6 @@
 package ru.bagrusss.templateapp.screens.mvi_example.ui.demo
 
-import ru.bagrusss.templateapp.architecture.mvi.MviStateMapper
+import ru.bagrusss.architecture.mvi.MviStateMapper
 import ru.bagrusss.templateapp.screens.mvi_example.ui.demo.DemoContract.*
 import javax.inject.Inject
 

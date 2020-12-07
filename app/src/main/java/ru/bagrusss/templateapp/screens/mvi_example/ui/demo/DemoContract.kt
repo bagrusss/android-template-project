@@ -1,10 +1,10 @@
 package ru.bagrusss.templateapp.screens.mvi_example.ui.demo
 
 import kotlinx.android.parcel.Parcelize
-import ru.bagrusss.templateapp.architecture.mvi.MviViewModel
-import ru.bagrusss.templateapp.architecture.mvi.common.IOData
-import ru.bagrusss.templateapp.architecture.mvi.common.ScreenStates
-import ru.bagrusss.templateapp.architecture.mvi.navigation.NavRouter
+import ru.bagrusss.architecture.mvi.MviViewModel
+import ru.bagrusss.architecture.mvi.common.IOData
+import ru.bagrusss.architecture.mvi.common.ScreenStates
+import ru.bagrusss.architecture.mvi.navigation.NavRouter
 import ru.bagrusss.templateapp.screens.mvi_example.domain.AgeResult
 
 interface DemoContract {

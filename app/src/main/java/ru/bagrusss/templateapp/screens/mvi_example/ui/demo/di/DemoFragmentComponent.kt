@@ -3,8 +3,8 @@ package ru.bagrusss.templateapp.screens.mvi_example.ui.demo.di
 import androidx.navigation.NavController
 import dagger.BindsInstance
 import dagger.Subcomponent
-import ru.bagrusss.templateapp.architecture.mvi.di.FragmentComponent
-import ru.bagrusss.templateapp.architecture.mvi.di.FragmentScope
+import ru.bagrusss.architecture.mvi.di.FragmentComponent
+import ru.bagrusss.architecture.mvi.di.FragmentScope
 import ru.bagrusss.templateapp.screens.mvi_example.ui.demo.DemoContract
 
 @FragmentScope

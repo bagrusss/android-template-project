@@ -5,19 +5,18 @@ import androidx.lifecycle.ViewModelStoreOwner
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
-import ru.bagrusss.templateapp.architecture.mvi.MviStateMapper
-import ru.bagrusss.templateapp.architecture.mvi.di.BaseFragmentModule
-import ru.bagrusss.templateapp.architecture.mvi.di.DiViewModelFactory
-import ru.bagrusss.templateapp.architecture.mvi.di.FragmentQualifier
-import ru.bagrusss.templateapp.architecture.mvi.di.FragmentScope
-import ru.bagrusss.templateapp.architecture.mvi.navigation.NavRouter
+import ru.bagrusss.architecture.mvi.MviStateMapper
+import ru.bagrusss.architecture.mvi.di.BaseFragmentModule
+import ru.bagrusss.architecture.mvi.di.DiViewModelFactory
+import ru.bagrusss.architecture.mvi.di.FragmentQualifier
+import ru.bagrusss.architecture.mvi.di.FragmentScope
+import ru.bagrusss.architecture.mvi.navigation.NavRouter
 import ru.bagrusss.templateapp.screens.mvi_example.ui.demo.DemoContract.*
 import ru.bagrusss.templateapp.screens.mvi_example.ui.demo.DemoRouter
 import ru.bagrusss.templateapp.screens.mvi_example.ui.demo.DemoStateMapper
 import ru.bagrusss.templateapp.screens.mvi_example.ui.demo.DemoViewModel
 import javax.inject.Inject
 import javax.inject.Provider
-
 
 @Module
 internal abstract class DemoModule : BaseFragmentModule {

@@ -1,10 +1,10 @@
 package ru.bagrusss.templateapp.screens.mvi_example.di
 
 import dagger.Component
-import ru.bagrusss.templateapp.architecture.mvi.common.LazySingletonHolder
-import ru.bagrusss.templateapp.architecture.mvi.common.ModuleInitArgs
-import ru.bagrusss.templateapp.architecture.mvi.di.ModuleScope
-import ru.bagrusss.templateapp.architecture.mvi.di.api.core.CoreApi
+import ru.bagrusss.architecture.mvi.common.LazySingletonHolder
+import ru.bagrusss.architecture.mvi.common.ModuleInitArgs
+import ru.bagrusss.architecture.mvi.di.ModuleScope
+import ru.bagrusss.architecture.mvi.di.api.core.CoreApi
 import ru.bagrusss.templateapp.screens.mvi_example.api.DemoModuleApi
 import ru.bagrusss.templateapp.screens.mvi_example.ui.demo.di.DemoFragmentInjector
 

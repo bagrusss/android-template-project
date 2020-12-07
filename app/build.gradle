@@ -72,6 +72,8 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation project(path: ':mvvm_architecture')
+    implementation project(path: ':mvi_architecture')
+    implementation project(path: ':architecture_common')
 
     /////////////////
     //

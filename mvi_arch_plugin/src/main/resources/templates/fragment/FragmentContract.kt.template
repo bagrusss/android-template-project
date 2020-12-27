@@ -1,0 +1,23 @@
+package ${package_name}
+
+import ru.bagrusss.architecture.mvi.common.IOData
+import ru.bagrusss.architecture.mvi.common.ScreenStates
+${import_parcelize}
+
+interface ${name}Contract {
+
+    interface ViewModel : MviViewModel<UIState, ${output_data_class_name}>
+    ${input_data}
+    ${output_data}
+
+    data class DomainState(
+        val value: Int = 0
+    ) : ScreenStates.Domain
+
+    data class UIState(
+        val value: Int = 0
+    ) : ScreenStates.UI
+
+    ${router}
+
+}

@@ -23,8 +23,7 @@ interface ${name}FragmentComponent : FragmentComponent {
         @BindsInstance
         fun inputData(inputData: ${name}Contract.InputData): Builder
 
-        @BindsInstance
-        fun navController(navController: NavController): Builder
+        ${nav_controller_binds_instance}
 
     }
 

@@ -5,6 +5,8 @@ import ru.bagrusss.architecture.common.SchedulersProvider
 import ru.bagrusss.architecture.mvi.BaseViewModel
 import ru.bagrusss.architecture.mvi.MviStateMapper
 import ru.bagrusss.architecture.mvi.common.IOData
+${input_data_import}
+${output_data_import}
 import ru.bagrusss.architecture.mvi.navigation.ResultsMediator
 import javax.inject.Inject
 
@@ -14,8 +16,8 @@ internal class DemoViewModel @Inject constructor(
     stateMapper: MviStateMapper<DomainState, UIState>,
     resultsMediator: ResultsMediator,
     schedulersProvider: SchedulersProvider,
-    private val inputData: InputData,
-    private val router: Router
+    ${input_data_parameter_model}
+    ${router_parameter_model}
 ) : BaseViewModel<DomainState, UIState, ${output_data_class_name}>(stateMapper, resultsMediator, schedulersProvider), ViewModel {
 
     override fun observeDomainState(): Observable<DomainState> = TODO()

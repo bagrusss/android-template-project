@@ -4,7 +4,7 @@ import ru.bagrusss.arch.mvi.plugin.generator.CodeGenSettings
 
 class CreateFragmentAction : CreateNavigableAction(
     folder = "fragment",
-    suffix = "",
+    suffix = "MVI Fragment",
     codeGens = listOf(
         CodeGenSettings(
             templateName = "Fragment",

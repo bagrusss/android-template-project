@@ -3,13 +3,14 @@
   <grid id="27dc6" binding="contentPane" layout-manager="GridLayoutManager" row-count="6" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="527" height="173"/>
+      <xy x="20" y="20" width="536" height="191"/>
     </constraints>
     <properties>
       <alignmentX value="0.5"/>
       <alignmentY value="0.0"/>
-      <minimumSize width="340" height="120"/>
-      <preferredSize width="340" height="120"/>
+      <enabled value="false"/>
+      <minimumSize width="340" height="160"/>
+      <preferredSize width="340" height="160"/>
     </properties>
     <border type="none"/>
     <children>

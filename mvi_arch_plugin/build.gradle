@@ -34,5 +34,5 @@ compileTestKotlin {
 patchPluginXml {
     changeNotes """
       MVI Arch plugin.<br>
-      <em>first version</em>"""
+      <em>First version</em>"""
 }

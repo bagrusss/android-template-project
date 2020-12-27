@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="ru.bagrusss.arch.mvi.plugin.dialogs.CreateDialog">
+  <grid id="27dc6" binding="contentPane" layout-manager="GridLayoutManager" row-count="6" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="527" height="173"/>
+    </constraints>
+    <properties>
+      <alignmentX value="0.5"/>
+      <alignmentY value="0.0"/>
+      <minimumSize width="340" height="120"/>
+      <preferredSize width="340" height="120"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <component id="24ba3" class="javax.swing.JTextField" binding="nameField">
+        <constraints>
+          <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+          </grid>
+        </constraints>
+        <properties>
+          <alignmentY value="0.5"/>
+          <horizontalAlignment value="10"/>
+          <margin top="2" left="6" bottom="2" right="6"/>
+          <text value=""/>
+        </properties>
+      </component>
+      <component id="ca1b2" class="javax.swing.JLabel" binding="labelField">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="1" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <alignmentX value="1.0"/>
+          <alignmentY value="1.0"/>
+          <horizontalAlignment value="2"/>
+          <text value="Enter name"/>
+          <verticalTextPosition value="0"/>
+        </properties>
+      </component>
+      <component id="d7585" class="javax.swing.JCheckBox" binding="addOutputDataCheckBox" default-binding="true">
+        <constraints>
+          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <selected value="true"/>
+          <text value="Add OutputData"/>
+        </properties>
+      </component>
+      <component id="d8216" class="javax.swing.JCheckBox" binding="addInputDataCheckBox" default-binding="true">
+        <constraints>
+          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <selected value="true"/>
+          <text value="Add InputData"/>
+        </properties>
+      </component>
+      <component id="12219" class="javax.swing.JCheckBox" binding="addPackageCheckBox">
+        <constraints>
+          <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <enabled value="false"/>
+          <selected value="true"/>
+          <text value="Add Package"/>
+        </properties>
+      </component>
+      <component id="25140" class="javax.swing.JCheckBox" binding="addLayoutCheckBox">
+        <constraints>
+          <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <selected value="true"/>
+          <text value="Add Layout"/>
+        </properties>
+      </component>
+      <component id="d79b2" class="javax.swing.JCheckBox" binding="addRouterCheckBox">
+        <constraints>
+          <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <selected value="true"/>
+          <text value="Add Router"/>
+        </properties>
+      </component>
+    </children>
+  </grid>
+</form>

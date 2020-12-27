@@ -1,11 +1,42 @@
 package ru.bagrusss.arch.mvi.plugin.actions
 
-import com.intellij.openapi.actionSystem.AnAction
-import com.intellij.openapi.actionSystem.AnActionEvent
+import ru.bagrusss.arch.mvi.plugin.generator.CodeGenSettings
 
-class CreateFragmentAction : AnAction() {
-    override fun actionPerformed(e: AnActionEvent) {
-        TODO("Not yet implemented")
-    }
-
-}
+class CreateFragmentAction : CreateNavigableAction(
+    folder = "fragment",
+    suffix = "",
+    codeGens = listOf(
+        CodeGenSettings(
+            templateName = "Fragment",
+            diSubdirectory = false
+        ),
+        CodeGenSettings(
+            templateName = "Contract",
+            diSubdirectory = false
+        ),
+        CodeGenSettings(
+            templateName = "ViewModel",
+            diSubdirectory = false
+        ),
+        CodeGenSettings(
+            templateName = "StateMapper",
+            diSubdirectory = false
+        ),
+        CodeGenSettings(
+            templateName = "Router",
+            diSubdirectory = false
+        ),
+        CodeGenSettings(
+            templateName = "FragmentComponent.kt.template",
+            diSubdirectory = true
+        ),
+        CodeGenSettings(
+            templateName = "FragmentModule",
+            diSubdirectory = true
+        ),
+        CodeGenSettings(
+            templateName = "FragmentInjector",
+            diSubdirectory = true
+        )
+    )
+)

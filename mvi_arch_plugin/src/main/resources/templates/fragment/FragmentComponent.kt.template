@@ -1,7 +1,7 @@
 package ${package_name}.di
 
-import androidx.navigation.NavController
-import dagger.BindsInstance
+${import_nav_controller}
+${import_binds_instance}
 import dagger.Subcomponent
 import ru.bagrusss.architecture.mvi.di.FragmentComponent
 import ru.bagrusss.architecture.mvi.di.FragmentScope
@@ -19,12 +19,8 @@ interface ${name}FragmentComponent : FragmentComponent {
 
     @Subcomponent.Builder
     interface Builder : FragmentComponent.Builder<${name}FragmentComponent, Builder> {
-
-        @BindsInstance
-        fun inputData(inputData: ${name}Contract.InputData): Builder
-
+        ${input_data_binds_instance}
         ${nav_controller_binds_instance}
-
     }
 
 }

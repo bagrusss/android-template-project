@@ -6,8 +6,8 @@ import javax.inject.Inject
 
 internal class ${name}StateMapper @Inject constructor(
 
-): MviStateMapper<${name}State, UIState> {
+): MviStateMapper<DomainState, UIState> {
 
-    override fun mapState(domainState: DomainState) = TODO()
+    override fun mapState(domainState: DomainState): UIState = TODO()
 
 }

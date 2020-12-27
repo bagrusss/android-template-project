@@ -5,17 +5,16 @@ import ru.bagrusss.architecture.common.SchedulersProvider
 import ru.bagrusss.architecture.mvi.BaseViewModel
 import ru.bagrusss.architecture.mvi.MviStateMapper
 import ru.bagrusss.architecture.mvi.common.IOData
-${input_data_import}
-${output_data_import}
 import ru.bagrusss.architecture.mvi.navigation.ResultsMediator
-import javax.inject.Inject
-
 import ${package_name}.${name}Contract.*
 
-internal class DemoViewModel @Inject constructor(
+import javax.inject.Inject
+
+
+internal class ${name}ViewModel @Inject constructor(
     stateMapper: MviStateMapper<DomainState, UIState>,
     resultsMediator: ResultsMediator,
-    schedulersProvider: SchedulersProvider,
+    schedulersProvider: SchedulersProvider
     ${input_data_parameter_model}
     ${router_parameter_model}
 ) : BaseViewModel<DomainState, UIState, ${output_data_class_name}>(stateMapper, resultsMediator, schedulersProvider), ViewModel {

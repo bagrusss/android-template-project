@@ -14,15 +14,15 @@ import ru.bagrusss.arch.mvi.plugin.dialogs.CreateDialog
 import ru.bagrusss.arch.mvi.plugin.generator.CodeGenSettings
 import ru.bagrusss.arch.mvi.plugin.generator.CodeGen
 import ru.bagrusss.arch.mvi.plugin.utils.camelToSnakeCase
+import java.io.File
 import java.io.IOException
 import java.nio.charset.StandardCharsets
-import javax.swing.JFrame
 import javax.swing.JOptionPane
 
-open class CreateNavigableAction(
+open class CreateAction(
     private val folder: String,
     private val suffix: String,
-    private val codeGens: List<CodeGenSettings>
+    private val codeGensCallBack: (CreateDialog.DialogResult) -> List<CodeGenSettings>
 ) : AnAction() {
 
     private val commandProcessor = CommandProcessor.getInstance()
@@ -32,8 +32,9 @@ open class CreateNavigableAction(
     override fun actionPerformed(e: AnActionEvent) {
         CreateDialog(suffix) { result ->
             applicationManager.runWriteAction {
+                val codeGens = codeGensCallBack(result)
                 try {
-                    generate(result)
+                    generate(result, codeGens)
                 } catch (ex: Exception) {
                     showError(ex.message.orEmpty())
                 }
@@ -74,7 +75,7 @@ open class CreateNavigableAction(
         return name.isEmpty() || PsiNameHelper.getInstance(directory.project).isQualifiedName(name)
     }
 
-    private fun generate(result: CreateDialog.DialogResult) {
+    private fun generate(result: CreateDialog.DialogResult, codeGens: List<CodeGenSettings>) {
         val name = result.name
         val snakeCaseName = name.camelToSnakeCase()
 
@@ -99,7 +100,7 @@ open class CreateNavigableAction(
             CodeGen(
                 folder = folder,
                 suffix = suffix,
-                name = name.removeSuffix(suffix),
+                name = name.removeSuffix(suffix).capitalize(),
                 packageName = psiPackage.qualifiedName,
                 templateName = settings.templateName,
                 diSubdirectory = settings.diSubdirectory
@@ -170,24 +171,27 @@ open class CreateNavigableAction(
         name: String
     ) {
         val resource = "/templates/layout/layout.xml.template"
-        val resourceAsStream = CreateNavigableAction::class.java.getResourceAsStream(resource)
         try {
+        val resourceAsStream = CreateAction::class.java.getResourceAsStream(resource)
             val layoutXml = IOUtils.toString(resourceAsStream, StandardCharsets.UTF_8.name())
-            val file = PsiFileFactory.getInstance(project)
+            val fileName = "$name.xml"
+            val newFile = File(directory.virtualFile.path, fileName)
+            if (!newFile.exists()) {
+                val file = PsiFileFactory.getInstance(project)
                     .createFileFromText(
-                            "$name.xml",
-                            XMLLanguage.INSTANCE,
-                            layoutXml
+                        fileName,
+                        XMLLanguage.INSTANCE,
+                        layoutXml
                     )
-
-            directory.add(file)
+                directory.add(file)
+            }
         } catch (e: IOException) {
             e.printStackTrace()
         }
     }
 
     private fun showError(error: String) {
-        JOptionPane.showMessageDialog(JFrame(), error)
+        JOptionPane.showMessageDialog(null, error)
     }
 
     companion object {

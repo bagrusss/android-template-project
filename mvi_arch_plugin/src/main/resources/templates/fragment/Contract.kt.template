@@ -2,6 +2,7 @@ package ${package_name}
 
 import ru.bagrusss.architecture.mvi.common.IOData
 import ru.bagrusss.architecture.mvi.common.ScreenStates
+import ru.bagrusss.architecture.mvi.MviViewModel
 ${import_parcelize}
 
 interface ${name}Contract {
@@ -19,5 +20,4 @@ interface ${name}Contract {
     ) : ScreenStates.UI
 
     ${router}
-
 }

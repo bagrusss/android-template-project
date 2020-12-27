@@ -4,6 +4,8 @@ import org.apache.commons.io.IOUtils
 import org.apache.commons.lang.text.StrSubstitutor
 import java.io.IOException
 import java.nio.charset.StandardCharsets
+import javax.swing.JFrame
+import javax.swing.JOptionPane
 
 class CodeGen(
     folder: String,
@@ -22,10 +24,11 @@ class CodeGen(
         templateValuesMap[KEY_INJECTOR_PROP_PREFIX] = name.decapitalize()
 
         val resource = "/templates/$folder/$templateName.kt.template"
-        val resourceAsStream = javaClass.getResourceAsStream(resource)
         try {
+            val resourceAsStream = javaClass.getResourceAsStream(resource)
             templateString = IOUtils.toString(resourceAsStream, StandardCharsets.UTF_8.name())
         } catch (e: IOException) {
+            JOptionPane.showMessageDialog(JFrame(), e.message)
             e.printStackTrace()
         }
     }
@@ -33,31 +36,31 @@ class CodeGen(
     fun getClassName() = name + templateName
 
     fun generate(withInputData: Boolean, withOutputData: Boolean, withLayout: Boolean, withRouter: Boolean): String {
-        val prefix = name + suffix
-
         templateValuesMap[KEY_INPUT_DATA] = if (withInputData) DEFAULT_INPUT_DATA else null
         templateValuesMap[KEY_OUTPUT_DATA] = if (withOutputData) DEFAULT_OUTPUT_DATA else null
         templateValuesMap[KEY_INPUT_DATA_REF] = if (withInputData) inputClassName else EMPTY_INPUT
-        templateValuesMap[KEY_INPUT_DATA_BINDS_INSTANCE] = if (withInputData) bindsInstance else ""
+        templateValuesMap[KEY_INPUT_DATA_BINDS_INSTANCE] = if (withInputData) bindsInstance else null
         templateValuesMap[KEY_INPUT_DATA_SETTER] = if (withInputData) INPUT_DATA_SETTER else null
         templateValuesMap[KEY_INPUT_DATA_PARAMETER_MODEL] = if (withInputData) inputClassParameter else ""
-        templateValuesMap[KEY_INPUT_DATA_IMPORT] = if (withInputData) createInputImport("$packageName.$prefix") else null
+        templateValuesMap[KEY_INPUT_DATA_IMPORT] = if (withInputData) createInputImport("$packageName.$name") else null
         templateValuesMap[KEY_OUTPUT_DATA_REF] = if (withOutputData) outputClassName else EMPTY_OUTPUT
         templateValuesMap[KEY_OUTPUT_DATA_CLASS_NAME] = if (withOutputData) OUTPUT_CLASS_NAME else EMPTY_OUTPUT
-        templateValuesMap[KEY_OUTPUT_DATA_IMPORT] = if (withOutputData) createOutputImport("$packageName.$prefix") else null
-        templateValuesMap[KEY_IMPORT_BINDS_INSTANCE] = if (withInputData) IMPORT_BINDS_INSTANCE else null
+        templateValuesMap[KEY_OUTPUT_DATA_IMPORT] = if (withOutputData) createOutputImport("$packageName.$name") else null
+        templateValuesMap[KEY_IMPORT_BINDS_INSTANCE] = if (withInputData || withRouter) IMPORT_BINDS_INSTANCE else null
         templateValuesMap[KEY_IMPORT_PARCELIZE] = if (withInputData) IMPORT_PARCELIZE else null
         templateValuesMap[KEY_IMPORT_IODATA] = if (!withInputData || !withOutputData) IMPORT_IODATA else null
         templateValuesMap[KEY_IMPORT_IODATA_MODEL] = if (!withOutputData) IMPORT_IODATA else null
-        templateValuesMap[KEY_INPUT_DATA_PARAMETER] = if (withInputData) inputDataParameter else ""
         templateValuesMap[KEY_INPUT_DATA_ARGUMENT] = if (withInputData) INPUT_DATA_ARGUMENT else EMPTY_INPUT
 
-        templateValuesMap[KEY_LAYOUT_ID] = if (withLayout) createLayoutId(name) else ""
+        templateValuesMap[KEY_LAYOUT_ID] = if (withLayout) createLayoutId(name, suffix) else ""
 
-        templateValuesMap[KEY_ROUTER] = if (withRouter) createRouter(name) else ""
-        templateValuesMap[KEY_NAV_CONTROLLER_BINDS_INSTANCE] = if (withRouter) bindNavController else ""
-        templateValuesMap[KEY_ROUTER_COMPONENTS_IN_MODULE] = if (withRouter) createRouterComponentsInModule(name) else ""
-        templateValuesMap[KEY_ROUTER_PARAMETER_MODEL] = if (withRouter) routerClassParameter else ""
+        templateValuesMap[KEY_ROUTER] = if (withRouter) createRouter() else null
+        templateValuesMap[KEY_NAV_CONTROLLER_BINDS_INSTANCE] = if (withRouter) bindNavController else null
+        templateValuesMap[KEY_ROUTER_COMPONENTS_IN_MODULE] = if (withRouter) createRouterComponentsInModule(name) else null
+        templateValuesMap[KEY_ROUTER_PARAMETER_MODEL] = if (withRouter) routerClassParameter else null
+        templateValuesMap[KEY_ROUTER_IMPORTS_IN_MODULE] = if (withRouter) createRouterImportsInModule(packageName, name) else null
+        templateValuesMap[KEY_NAV_CONTROLLER_SETTER] = if (withRouter) NAV_CONTROLLER_SETTER else null
+        templateValuesMap[KEY_IMPORT_NAV_CONTROLLER] = if (withRouter) IMPORT_NAV_CONTROLLER else null
 
         return StrSubstitutor(templateValuesMap)
             .replace(templateString)
@@ -80,12 +83,12 @@ class CodeGen(
         const val KEY_INPUT_DATA_SETTER = "input_data_setter"
         const val KEY_INPUT_DATA_PARAMETER_MODEL = "input_data_parameter_model"
         const val KEY_INPUT_DATA_IMPORT = "input_data_import"
-        const val KEY_INPUT_DATA_PARAMETER = "input_data_parameter"
         const val KEY_INPUT_DATA_ARGUMENT = "input_data_argument"
         const val KEY_OUTPUT_DATA_REF = "output_data_ref"
         const val KEY_OUTPUT_DATA_CLASS_NAME = "output_data_class_name"
         const val KEY_OUTPUT_DATA_IMPORT = "output_data_import"
         const val KEY_IMPORT_BINDS_INSTANCE = "import_binds_instance"
+        const val KEY_IMPORT_NAV_CONTROLLER = "import_nav_controller"
         const val KEY_IMPORT_PARCELIZE = "import_parcelize"
         const val KEY_IMPORT_IODATA = "import_iodata"
         const val KEY_IMPORT_IODATA_MODEL = "import_iodata_model"
@@ -94,5 +97,7 @@ class CodeGen(
         const val KEY_NAV_CONTROLLER_BINDS_INSTANCE = "nav_controller_binds_instance"
         const val KEY_ROUTER_COMPONENTS_IN_MODULE = "router_components_in_module"
         const val KEY_ROUTER_PARAMETER_MODEL = "router_parameter_model"
+        const val KEY_ROUTER_IMPORTS_IN_MODULE = "router_imports_in_module"
+        const val KEY_NAV_CONTROLLER_SETTER = "nav_controller_setter"
     }
 }

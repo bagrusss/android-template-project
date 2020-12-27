@@ -10,9 +10,8 @@ import ru.bagrusss.architecture.mvi.di.BaseFragmentModule
 import ru.bagrusss.architecture.mvi.di.DiViewModelFactory
 import ru.bagrusss.architecture.mvi.di.FragmentQualifier
 import ru.bagrusss.architecture.mvi.di.FragmentScope
-import ru.bagrusss.architecture.mvi.navigation.NavRouter
+${router_imports_in_module}
 import ${package_name}.${name}Contract.*
-import ${package_name}.${name}Router
 import ${package_name}.${name}StateMapper
 import ${package_name}.${name}ViewModel
 import javax.inject.Inject
@@ -30,7 +29,6 @@ internal abstract class ${name}Module : BaseFragmentModule {
     abstract fun bindStateMapper(stateMapper: ${name}StateMapper): MviStateMapper<DomainState, UIState>
 
     ${router_components_in_module}
-
     @Module
     companion object {
 

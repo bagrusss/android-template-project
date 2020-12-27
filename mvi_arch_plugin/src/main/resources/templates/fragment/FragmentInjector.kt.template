@@ -2,6 +2,6 @@ package ${package_name}.di
 
 interface ${name}FragmentInjector {
 
-    val ${name_small}ComponentBuilder: ${name}FragmentComponent.Builder
+    val ${injector_prop_prefix}ComponentBuilder: ${name}FragmentComponent.Builder
 
 }

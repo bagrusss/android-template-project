@@ -4,7 +4,6 @@ ${import_iodata}
 ${input_data_import}
 ${output_data_import}
 import ${package_name}.${name}Contract.UIState
-import ${package_name}.di.${name}FragmentInjector
 import ru.bagrusss.architecture.common.unsafeLazy
 import ru.bagrusss.architecture.mvi.MviFragment
 
@@ -14,9 +13,7 @@ class ${name}Fragment : MviFragment<UIState, ${input_data_ref}, ${output_data_re
 
     override val component by unsafeLazy {
         DiProvider.component
-                    .${name_small}ComponentBuilder
-                    .inputData(inputData)
-                    .navController(findNavController())
+                    .${injector_prop_prefix}ComponentBuilder${input_data_setter}${nav_controller_setter}
                     .fragment(this)
                     .build()
     }

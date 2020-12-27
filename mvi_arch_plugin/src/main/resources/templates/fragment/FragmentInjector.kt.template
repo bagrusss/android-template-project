@@ -1,0 +1,7 @@
+package ${package_name}.di
+
+interface ${name}FragmentInjector {
+
+    val ${name_small}ComponentBuilder: ${name}FragmentComponent.Builder
+
+}

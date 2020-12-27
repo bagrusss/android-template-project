@@ -1,0 +1,27 @@
+package ${package_name}
+
+${import_iodata}
+${input_data_import}
+${output_data_import}
+import ${package_name}.${name}Contract.UIState
+import ${package_name}.di.${name}FragmentInjector
+import ru.bagrusss.architecture.common.unsafeLazy
+
+class ${name}Fragment : MviFragment<UIState, ${input_data_ref}, ${output_data_ref}>(${layout_id}) {
+
+    override val viewModel by unsafeLazy { component.viewModel }
+
+    override val component by unsafeLazy {
+        DiProvider.component
+                    .${name_small}ComponentBuilder
+                    .inputData(inputData)
+                    .navController(findNavController())
+                    .fragment(this)
+                    .build()
+    }
+
+    override fun buildScreen(state: UIState) {
+
+    }
+
+}

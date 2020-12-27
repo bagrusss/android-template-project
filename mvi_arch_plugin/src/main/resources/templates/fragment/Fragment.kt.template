@@ -6,6 +6,7 @@ ${output_data_import}
 import ${package_name}.${name}Contract.UIState
 import ${package_name}.di.${name}FragmentInjector
 import ru.bagrusss.architecture.common.unsafeLazy
+import ru.bagrusss.architecture.mvi.MviFragment
 
 class ${name}Fragment : MviFragment<UIState, ${input_data_ref}, ${output_data_ref}>(${layout_id}) {
 

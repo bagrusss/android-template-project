@@ -10,7 +10,6 @@ interface FragmentComponent {
 
     val schedulersProvider: SchedulersProvider
     val resultNotifier: ResultNotifier
-    val router: NavRouter
 
     interface Builder<T : FragmentComponent, B> {
 

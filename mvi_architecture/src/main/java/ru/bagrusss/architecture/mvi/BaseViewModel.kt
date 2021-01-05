@@ -12,7 +12,6 @@ import java.util.concurrent.atomic.AtomicBoolean
 
 abstract class BaseViewModel<STATE : ScreenStates.Domain, UI : ScreenStates.UI, OUTPUT : IOData.Output>(
     private val stateMapper: MviStateMapper<STATE, UI>,
-    private val resultsMediator: ResultsMediator,
     private val schedulersProvider: SchedulersProvider
 ) : ViewModel(), MviViewModel<UI, OUTPUT> {
 
@@ -31,9 +30,10 @@ abstract class BaseViewModel<STATE : ScreenStates.Domain, UI : ScreenStates.UI, 
         }
         .map(stateMapper::mapState)
 
-    protected fun postResult(result: OUTPUT) = resultsMediator.postResult(result)
     protected fun <T : Any> createStateProperty(): StateField<T> = MemoryField()
 
     protected fun <T : Any> createStateProperty(default: T): StateField<T> = MemoryField(default)
+
+    protected fun ResultsMediator.postResult(result: OUTPUT) = postResult(result)
 
 }

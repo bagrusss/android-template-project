@@ -16,9 +16,7 @@ import ru.bagrusss.architecture.mvi.di.FragmentComponent
 import ru.bagrusss.architecture.mvi.ext.toInput
 import timber.log.Timber
 
-abstract class MviFragment<UI : ScreenStates.UI, INPUT_DATA : IOData.Input, OUTPUT_DATA : IOData.Output>(
-    layout: Int
-) : Fragment(layout) {
+abstract class MviFragment<UI : ScreenStates.UI, INPUT_DATA : IOData.Input, OUTPUT_DATA : IOData.Output>(layout: Int) : Fragment(layout) {
 
     protected abstract val component: FragmentComponent
 
@@ -46,16 +44,9 @@ abstract class MviFragment<UI : ScreenStates.UI, INPUT_DATA : IOData.Input, OUTP
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-
-        component.router.onStart()
-    }
-
     override fun onStop() {
         super.onStop()
 
-        component.router.onStop()
         stopFragmentDisposable.clear()
     }
 

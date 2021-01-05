@@ -14,7 +14,7 @@ class BaseResultsMediator @Inject constructor(): ResultsMediator, ResultNotifier
         get() = notificationsSubject.hide()
 
     override val results: Observable<Parcelable>
-        get() = resultSubject.hide()
+        get() = resultSubject
 
     override fun notifyResult(result: Parcelable) = resultSubject.onNext(result)
 

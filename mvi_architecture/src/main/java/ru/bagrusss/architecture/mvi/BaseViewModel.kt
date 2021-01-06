@@ -28,6 +28,14 @@ abstract class BaseViewModel<STATE : ScreenStates.Domain, UI : ScreenStates.UI, 
 
     abstract fun observeDomainState(): Observable<STATE>
 
+    override fun stop() {
+        stopDisposables.clear()
+    }
+
+    override fun destroy() {
+        destroyDisposables.clear()
+    }
+
     override fun stateChanges(): Observable<UI> = observeDomainState()
         .compose { observable ->
             if (firstEmit.get()) {

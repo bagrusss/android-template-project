@@ -7,15 +7,15 @@ import androidx.lifecycle.OnLifecycleEvent
 interface LifecycleHandler : LifecycleObserver {
 
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
-    fun create()
+    fun create() {}
 
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
-    fun start()
+    fun start() {}
 
     @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
-    fun stop()
+    fun stop() {}
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-    fun destroy()
-    
+    fun destroy() {}
+
 }

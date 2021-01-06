@@ -1,5 +1,7 @@
 package ru.bagrusss.architecture.mvi.di.api.core
 
+import android.content.Context
+import dagger.BindsInstance
 import dagger.Component
 import ru.bagrusss.architecture.mvi.common.LazySingletonHolder
 import javax.inject.Singleton
@@ -14,13 +16,20 @@ internal interface CoreComponent : CoreApi {
 
     @Component.Factory
     interface Factory {
-        fun create(): CoreApi
+
+        fun create(
+            @BindsInstance context: Context
+        ): CoreApi
     }
 
 }
 
-object CoreApiProvider : LazySingletonHolder<CoreApi, Unit>({
+data class CoreArgs(
+    @JvmField val context: Context
+)
+
+object CoreApiProvider : LazySingletonHolder<CoreApi, CoreArgs>({ args ->
     DaggerCoreComponent.factory()
-        .create()
+        .create(args.context)
 })
 

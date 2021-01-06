@@ -1,5 +1,6 @@
 package ru.bagrusss.architecture.mvi
 
+import android.content.Context
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.View
@@ -27,6 +28,12 @@ abstract class MviFragment<UI : ScreenStates.UI, INPUT_DATA : IOData.Input, OUTP
 
     private val destroyFragmentDisposable by unsafeLazy(::CompositeDisposable)
     private val stopFragmentDisposable by unsafeLazy(::CompositeDisposable)
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        lifecycle.addObserver(viewModel)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

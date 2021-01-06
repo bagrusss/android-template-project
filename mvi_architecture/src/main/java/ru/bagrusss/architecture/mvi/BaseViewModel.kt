@@ -1,6 +1,7 @@
 package ru.bagrusss.architecture.mvi
 
 import androidx.lifecycle.ViewModel
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -58,7 +59,7 @@ abstract class BaseViewModel<STATE : ScreenStates.Domain, UI : ScreenStates.UI, 
         onComplete: () -> Unit = {},
         onNext: (T) -> Unit = {},
     ) = observeOn(schedulersProvider.main)
-            .subscribe(onNext, onError, onComplete)
+        .subscribe(onNext, onError, onComplete)
 
     protected fun <T> Observable<T>.subscrubeTillDestroy(
         onError: (Throwable) -> Unit = Timber::e,
@@ -80,7 +81,7 @@ abstract class BaseViewModel<STATE : ScreenStates.Domain, UI : ScreenStates.UI, 
         onError: (Throwable) -> Unit = Timber::e,
         onSuccess: (T) -> Unit = {},
     ) = observeOn(schedulersProvider.main)
-            .subscribe(onSuccess, onError)
+        .subscribe(onSuccess, onError)
 
     protected fun <T> Single<T>.subscrubeTillDestroy(
         onError: (Throwable) -> Unit = Timber::e,
@@ -93,6 +94,26 @@ abstract class BaseViewModel<STATE : ScreenStates.Domain, UI : ScreenStates.UI, 
         onError: (Throwable) -> Unit = Timber::e,
         onSuccess: (T) -> Unit = {},
     ) = subscribeTill(onError, onSuccess).also {
+        stopDisposables += it
+    }
+
+    private fun Completable.subscribeTill(
+        onError: (Throwable) -> Unit = Timber::e,
+        onComplete: () -> Unit = {},
+    ) = observeOn(schedulersProvider.main)
+        .subscribe(onComplete, onError)
+
+    protected fun Completable.subscrubeTillDestroy(
+        onError: (Throwable) -> Unit = Timber::e,
+        onComplete: () -> Unit = {},
+    ) = subscribeTill(onError, onComplete).also {
+        destroyDisposables += it
+    }
+
+    protected fun Completable.subscrubeTillStop(
+        onError: (Throwable) -> Unit = Timber::e,
+        onComplete: () -> Unit = {},
+    ) = subscribeTill(onError, onComplete).also {
         stopDisposables += it
     }
 

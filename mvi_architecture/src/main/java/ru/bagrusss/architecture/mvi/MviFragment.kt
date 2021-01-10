@@ -1,5 +1,6 @@
 package ru.bagrusss.architecture.mvi
 
+import android.content.Context
 import android.os.Bundle
 import android.os.Parcelable
 import android.view.View
@@ -16,9 +17,7 @@ import ru.bagrusss.architecture.mvi.di.FragmentComponent
 import ru.bagrusss.architecture.mvi.ext.toInput
 import timber.log.Timber
 
-abstract class MviFragment<UI : ScreenStates.UI, INPUT_DATA : IOData.Input, OUTPUT_DATA : IOData.Output>(
-    layout: Int
-) : Fragment(layout) {
+abstract class MviFragment<UI : ScreenStates.UI, INPUT_DATA : IOData.Input, OUTPUT_DATA : IOData.Output>(layout: Int) : Fragment(layout) {
 
     protected abstract val component: FragmentComponent
 
@@ -29,6 +28,12 @@ abstract class MviFragment<UI : ScreenStates.UI, INPUT_DATA : IOData.Input, OUTP
 
     private val destroyFragmentDisposable by unsafeLazy(::CompositeDisposable)
     private val stopFragmentDisposable by unsafeLazy(::CompositeDisposable)
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        lifecycle.addObserver(viewModel)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -46,16 +51,9 @@ abstract class MviFragment<UI : ScreenStates.UI, INPUT_DATA : IOData.Input, OUTP
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-
-        component.router.onStart()
-    }
-
     override fun onStop() {
         super.onStop()
 
-        component.router.onStop()
         stopFragmentDisposable.clear()
     }
 

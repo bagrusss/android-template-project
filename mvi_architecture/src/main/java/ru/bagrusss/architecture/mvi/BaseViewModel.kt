@@ -1,5 +1,6 @@
 package ru.bagrusss.architecture.mvi
 
+import androidx.annotation.CallSuper
 import androidx.lifecycle.ViewModel
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Observable
@@ -18,7 +19,7 @@ import java.util.concurrent.atomic.AtomicBoolean
 
 abstract class BaseViewModel<STATE : ScreenStates.Domain, UI : ScreenStates.UI, OUTPUT : IOData.Output>(
     private val stateMapper: MviStateMapper<STATE, UI>,
-    private val schedulersProvider: SchedulersProvider
+    protected val schedulers: SchedulersProvider
 ) : ViewModel(), MviViewModel<UI, OUTPUT> {
 
     private val firstEmit = AtomicBoolean(true)
@@ -29,10 +30,16 @@ abstract class BaseViewModel<STATE : ScreenStates.Domain, UI : ScreenStates.UI, 
 
     abstract fun observeDomainState(): Observable<STATE>
 
+    override fun create() {}
+
+    override fun start() {}
+
+    @CallSuper
     override fun stop() {
         stopDisposables.clear()
     }
 
+    @CallSuper
     override fun destroy() {
         destroyDisposables.clear()
     }
@@ -43,7 +50,7 @@ abstract class BaseViewModel<STATE : ScreenStates.Domain, UI : ScreenStates.UI, 
                 firstEmit.set(false)
                 observable
             } else {
-                observable.observeOn(schedulersProvider.computation)
+                observable.observeOn(schedulers.computation)
             }
         }
         .map(stateMapper::mapState)
@@ -58,7 +65,7 @@ abstract class BaseViewModel<STATE : ScreenStates.Domain, UI : ScreenStates.UI, 
         onError: (Throwable) -> Unit = Timber::e,
         onComplete: () -> Unit = {},
         onNext: (T) -> Unit = {},
-    ) = observeOn(schedulersProvider.main)
+    ) = observeOn(schedulers.main)
         .subscribe(onNext, onError, onComplete)
 
     protected fun <T> Observable<T>.subscrubeTillDestroy(
@@ -80,7 +87,7 @@ abstract class BaseViewModel<STATE : ScreenStates.Domain, UI : ScreenStates.UI, 
     private fun <T> Single<T>.subscribeTill(
         onError: (Throwable) -> Unit = Timber::e,
         onSuccess: (T) -> Unit = {},
-    ) = observeOn(schedulersProvider.main)
+    ) = observeOn(schedulers.main)
         .subscribe(onSuccess, onError)
 
     protected fun <T> Single<T>.subscrubeTillDestroy(
@@ -100,7 +107,7 @@ abstract class BaseViewModel<STATE : ScreenStates.Domain, UI : ScreenStates.UI, 
     private fun Completable.subscribeTill(
         onError: (Throwable) -> Unit = Timber::e,
         onComplete: () -> Unit = {},
-    ) = observeOn(schedulersProvider.main)
+    ) = observeOn(schedulers.main)
         .subscribe(onComplete, onError)
 
     protected fun Completable.subscrubeTillDestroy(

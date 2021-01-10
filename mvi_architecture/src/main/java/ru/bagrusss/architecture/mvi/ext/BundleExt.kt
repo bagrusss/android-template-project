@@ -3,7 +3,7 @@ package ru.bagrusss.architecture.mvi.ext
 import android.os.Bundle
 import ru.bagrusss.architecture.mvi.common.IOData
 
-private const val INPUT_KEY = "input_data"
+const val INPUT_KEY = "input_data"
 
 fun <T : IOData.Input> Bundle?.toInput(): T = this?.getParcelable<T>(INPUT_KEY)!!
 

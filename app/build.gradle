@@ -71,9 +71,9 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation project(path: ':mvvm_architecture')
-    implementation project(path: ':mvi_architecture')
-    implementation project(path: ':architecture_common')
+    implementation project(path: ':mvvm_arch')
+    implementation project(path: ':rx_mvi_arch')
+    implementation project(path: ':arch_common')
 
     /////////////////
     //

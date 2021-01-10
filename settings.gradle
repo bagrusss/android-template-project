@@ -1,4 +1,4 @@
-include ':architecture_common'
-include ':mvi_architecture'
-include ':mvvm_architecture'
+include ':arch_common'
+include ':rx_mvi_arch'
+include ':mvvm_arch'
 include ':app'

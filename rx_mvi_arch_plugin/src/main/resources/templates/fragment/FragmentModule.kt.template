@@ -1,0 +1,54 @@
+package ${package_name}.di
+
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelStoreOwner
+import dagger.Binds
+import dagger.Module
+import dagger.Provides
+import ${arch_package_name}.MviStateMapper
+import ${arch_package_name}.di.BaseFragmentModule
+import ${arch_package_name}.di.DiViewModelFactory
+import ${arch_package_name}.di.FragmentQualifier
+import ${arch_package_name}.di.FragmentScope
+${router_imports_in_module}
+import ${package_name}.${name}Contract.*
+import ${package_name}.${name}StateMapper
+import ${package_name}.${name}ViewModel
+import javax.inject.Inject
+import javax.inject.Provider
+
+@Module
+internal abstract class ${name}Module : BaseFragmentModule {
+
+    @Binds
+    @FragmentScope
+    abstract fun bindViewModeFactory(factory: ViewModelFactory): ViewModelProvider.Factory
+
+    @Binds
+    @FragmentScope
+    abstract fun bindStateMapper(stateMapper: ${name}StateMapper): MviStateMapper<DomainState, UIState>
+
+    ${router_components_in_module}
+    @Module
+    companion object {
+
+        @Provides
+        @JvmStatic
+        @FragmentScope
+        fun provideViewModelProvider(
+            @FragmentQualifier storeOwner: ViewModelStoreOwner,
+            factory: ViewModelProvider.Factory
+        ) = ViewModelProvider(storeOwner, factory)
+
+        @Provides
+        @JvmStatic
+        @FragmentScope
+        fun provideViewModel(viewModelProvider: ViewModelProvider): ViewModel = viewModelProvider[${name}ViewModel::class.java]
+
+    }
+
+}
+
+internal class ViewModelFactory @Inject constructor(
+    provider: Provider<${name}ViewModel>
+) : DiViewModelFactory<${name}ViewModel>(provider)

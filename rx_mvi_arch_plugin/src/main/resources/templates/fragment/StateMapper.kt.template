@@ -1,0 +1,13 @@
+package ${package_name}
+
+import ${arch_package_name}.MviStateMapper
+import ${package_name}.${name}Contract.*
+import javax.inject.Inject
+
+internal class ${name}StateMapper @Inject constructor(
+
+): MviStateMapper<DomainState, UIState> {
+
+    override fun mapState(domainState: DomainState): UIState = TODO()
+
+}

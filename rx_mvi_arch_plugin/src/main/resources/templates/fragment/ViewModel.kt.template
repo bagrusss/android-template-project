@@ -1,0 +1,24 @@
+package ${package_name}
+
+import io.reactivex.rxjava3.core.Observable
+import ru.bagrusss.architecture.common.SchedulersProvider
+import ${arch_package_name}.BaseViewModel
+import ${arch_package_name}.MviStateMapper
+import ${arch_package_name}.common.IOData
+import ${arch_package_name}.navigation.ResultsMediator
+import ${package_name}.${name}Contract.*
+
+import javax.inject.Inject
+
+
+internal class ${name}ViewModel @Inject constructor(
+    stateMapper: MviStateMapper<DomainState, UIState>,
+    resultsMediator: ResultsMediator,
+    schedulersProvider: SchedulersProvider
+    ${input_data_parameter_model}
+    ${router_parameter_model}
+) : BaseViewModel<DomainState, UIState, ${output_data_class_name}>(stateMapper, resultsMediator, schedulersProvider), ViewModel {
+
+    override fun observeDomainState(): Observable<DomainState> = TODO()
+
+}

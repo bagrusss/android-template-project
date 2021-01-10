@@ -1,0 +1,23 @@
+package ${package_name}
+
+import ${arch_package_name}.common.IOData
+import ${arch_package_name}.common.ScreenStates
+import ${arch_package_name}.MviViewModel
+${import_parcelize}
+
+interface ${name}Contract {
+
+    interface ViewModel : MviViewModel<UIState, ${output_data_class_name}>
+    ${input_data}
+    ${output_data}
+
+    data class DomainState(
+        val value: Int = 0
+    ) : ScreenStates.Domain
+
+    data class UIState(
+        val value: Int = 0
+    ) : ScreenStates.UI
+
+    ${router}
+}

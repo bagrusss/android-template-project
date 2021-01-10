@@ -1,0 +1,13 @@
+package ${package_name}
+
+import androidx.navigation.NavController
+import ${arch_package_name}.navigation.BaseNavRouter
+import ${arch_package_name}.navigation.ResultsMediator
+import javax.inject.Inject
+
+internal class ${name}Router @Inject constructor(
+    resultsMediator: ResultsMediator,
+    private val navController: NavController
+) : BaseNavRouter(resultsMediator), ${name}Contract.Router {
+
+}

@@ -1,7 +1,7 @@
 package ru.bagrusss.architecture.mvi.common
 
 import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
+import kotlinx.parcelize.Parcelize
 
 interface IOData {
 

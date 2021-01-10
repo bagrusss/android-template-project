@@ -1,8 +1,9 @@
 apply plugin: 'com.android.application'
 
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-parcelize'
+
 
 android {
 
@@ -24,12 +25,7 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = '1.8'
-    }
-
-    androidExtensions {
-        experimental = true
-        //features = ["parcelize"]
+        jvmTarget = JavaVersion.VERSION_1_8
     }
 
     dataBinding {

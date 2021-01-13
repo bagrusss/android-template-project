@@ -4,7 +4,7 @@ ${import_iodata}
 ${input_data_import}
 ${output_data_import}
 import ${package_name}.${name}Contract.UIState
-import ru.bagrusss.architecture.common.unsafeLazy
+import ${common_package_name}.unsafeLazy
 import ${arch_package_name}.MviFragment
 
 class ${name}Fragment : MviFragment<UIState, ${input_data_ref}, ${output_data_ref}>(${layout_id}) {

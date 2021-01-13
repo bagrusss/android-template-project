@@ -21,7 +21,8 @@ class CodeGen(
     init {
         templateValuesMap[KEY_PACKAGE_NAME] = packageName
         templateValuesMap[KEY_ARCH_PACKAGE_NAME] = ARCH_PACKAGE
-        templateValuesMap[KEY_COMMON_PACKAGE_NAME] = ARCH_PACKAGE
+        templateValuesMap[KEY_COMMON_PACKAGE_NAME] = COMMON_PACKAGE
+        templateValuesMap[KEY_MVI_COMMON_PACKAGE_NAME] = MVI_COMMON_PACKAGE
         templateValuesMap[KEY_NAME] = name
         templateValuesMap[KEY_INJECTOR_PROP_PREFIX] = name.decapitalize()
 
@@ -78,6 +79,7 @@ class CodeGen(
         const val KEY_PACKAGE_NAME = "package_name"
         const val KEY_ARCH_PACKAGE_NAME = "arch_package_name"
         const val KEY_COMMON_PACKAGE_NAME = "common_package_name"
+        const val KEY_MVI_COMMON_PACKAGE_NAME = "mvi_common_package_name"
         const val KEY_NAME = "name"
         const val KEY_INJECTOR_PROP_PREFIX = "injector_prop_prefix"
         const val KEY_INPUT_DATA = "input_data"

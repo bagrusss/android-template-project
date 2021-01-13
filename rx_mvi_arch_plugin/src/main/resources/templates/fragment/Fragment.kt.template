@@ -13,7 +13,9 @@ class ${name}Fragment : MviFragment<UIState, ${input_data_ref}, ${output_data_re
 
     override val component by unsafeLazy {
         DiProvider.component
-                    .${injector_prop_prefix}ComponentBuilder${input_data_setter}${nav_controller_setter}
+                    .${injector_prop_prefix}ComponentBuilder
+                    ${input_data_setter}
+                    ${nav_controller_setter}
                     .fragment(this)
                     .build()
     }

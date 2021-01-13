@@ -12,12 +12,11 @@ const val COMMON_PACKAGE = "$BASE_PACKAGE.common"
 const val MVI_COMMON_PACKAGE = "$BASE_PACKAGE.rx_mvi.common"
 const val IMPORT_PARCELIZE = "import kotlinx.parcelize.Parcelize"
 const val IMPORT_IODATA = "import $MVI_COMMON_PACKAGE.IOData"
+const val RX_PACKAGE = "io.reactivex.rxjava3.core"
 const val OUTPUT_CLASS_NAME = "OutputData"
-const val INPUT_DATA_SETTER = """
-                    .inputData(inputData)"""
+const val INPUT_DATA_SETTER = ".inputData(inputData)"
 const val INPUT_DATA_ARGUMENT = "inputData"
-const val NAV_CONTROLLER_SETTER = """
-                    .navController(findNavController())"""
+const val NAV_CONTROLLER_SETTER = ".navController(findNavController())"
 
 const val DEFAULT_INPUT_DATA = """
     @Parcelize
@@ -57,13 +56,12 @@ const val bindNavController = """
 
 fun createLayoutId(name: String, suffix: String) = "R.layout.${suffix.decapitalize()}_${name.decapitalize().camelToSnakeCase()}"
 
-fun createRouter() = """
+const val router = """
     interface Router : NavRouter {
     
     }"""
 
 fun createRouterComponentsInModule(name: String) = """
-
     @Binds
     @FragmentScope
     abstract fun bind${name}Router(router: ${name}Router): Router
@@ -71,5 +69,4 @@ fun createRouterComponentsInModule(name: String) = """
     @Binds
     @FragmentScope
     abstract fun bindRouter(${name.decapitalize()}Router: Router): NavRouter
-
 """

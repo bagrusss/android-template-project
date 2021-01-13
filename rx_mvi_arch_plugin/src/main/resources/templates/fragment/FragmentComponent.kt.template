@@ -6,6 +6,7 @@ import dagger.Subcomponent
 import ${arch_package_name}.di.FragmentComponent
 import ${arch_package_name}.di.FragmentScope
 import ${package_name}.${name}Contract
+${input_data_import}
 
 @FragmentScope
 @Subcomponent(

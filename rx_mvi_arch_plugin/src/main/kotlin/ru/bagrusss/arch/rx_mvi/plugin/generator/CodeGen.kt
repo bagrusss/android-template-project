@@ -23,6 +23,7 @@ class CodeGen(
         templateValuesMap[KEY_ARCH_PACKAGE_NAME] = ARCH_PACKAGE
         templateValuesMap[KEY_COMMON_PACKAGE_NAME] = COMMON_PACKAGE
         templateValuesMap[KEY_MVI_COMMON_PACKAGE_NAME] = MVI_COMMON_PACKAGE
+        templateValuesMap[KEY_RX_PACKAGE] = RX_PACKAGE
         templateValuesMap[KEY_NAME] = name
         templateValuesMap[KEY_INJECTOR_PROP_PREFIX] = name.decapitalize()
 
@@ -57,7 +58,7 @@ class CodeGen(
 
         templateValuesMap[KEY_LAYOUT_ID] = if (withLayout) createLayoutId(name, suffix) else ""
 
-        templateValuesMap[KEY_ROUTER] = if (withRouter) createRouter() else null
+        templateValuesMap[KEY_ROUTER] = if (withRouter) router else null
         templateValuesMap[KEY_NAV_CONTROLLER_BINDS_INSTANCE] = if (withRouter) bindNavController else null
         templateValuesMap[KEY_ROUTER_COMPONENTS_IN_MODULE] = if (withRouter) createRouterComponentsInModule(name) else null
         templateValuesMap[KEY_ROUTER_PARAMETER_MODEL] = if (withRouter) routerClassParameter else null
@@ -96,6 +97,7 @@ class CodeGen(
         const val KEY_IMPORT_BINDS_INSTANCE = "import_binds_instance"
         const val KEY_IMPORT_NAV_CONTROLLER = "import_nav_controller"
         const val KEY_IMPORT_PARCELIZE = "import_parcelize"
+        const val KEY_RX_PACKAGE = "rx_package"
         const val KEY_IMPORT_IODATA = "import_iodata"
         const val KEY_IMPORT_IODATA_MODEL = "import_iodata_model"
         const val KEY_LAYOUT_ID = "layout_id"

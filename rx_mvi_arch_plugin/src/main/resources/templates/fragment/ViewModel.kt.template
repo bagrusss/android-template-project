@@ -1,6 +1,6 @@
 package ${package_name}
 
-import io.reactivex.rxjava3.core.Observable
+import ${rx_package}.Observable
 import ${common_package_name}.SchedulersProvider
 import ${arch_package_name}.BaseViewModel
 import ${arch_package_name}.MviStateMapper
@@ -17,6 +17,6 @@ internal class ${name}ViewModel @Inject constructor(
     ${router_parameter_model}
 ) : BaseViewModel<DomainState, UIState, ${output_data_class_name}>(stateMapper, schedulersProvider), ViewModel {
 
-    override fun observeDomainState(): Observable<DomainState> = TODO()
+    override fun observeDomainState(): Observable<DomainState> = Observable.just(DomainState())
 
 }

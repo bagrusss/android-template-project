@@ -8,6 +8,6 @@ internal class ${name}StateMapper @Inject constructor(
 
 ): MviStateMapper<DomainState, UIState> {
 
-    override fun mapState(domainState: DomainState): UIState = TODO()
+    override fun mapState(domainState: DomainState): UIState = UIState()
 
 }

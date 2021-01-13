@@ -27,7 +27,6 @@ internal abstract class ${name}Module : BaseFragmentModule {
     @Binds
     @FragmentScope
     abstract fun bindStateMapper(stateMapper: ${name}StateMapper): MviStateMapper<DomainState, UIState>
-
     ${router_components_in_module}
     @Module
     companion object {
